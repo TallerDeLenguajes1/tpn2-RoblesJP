@@ -5,4 +5,4 @@
 **¿Puede ver el archivo tp2_1_2.cpp?**  
 No.  
 **¿Por qué?**  
-Porque ese archivo corresponde a otro branch.
+Porque el archivo fue creado sobre el branch opcion_2, por lo tanto no se lo puede ver si cambiamos al branch master.
