@@ -7,7 +7,7 @@
 // funciones
 void cargarMatriz(int, int, int*);
 void mostrarMatriz(int, int, int*);
-void paresPorFila(int, int, int*);
+void genVectorCantParesPorFila(int, int, int*, int*);
 
 int main() {
     srand(time(NULL));
@@ -17,8 +17,12 @@ int main() {
     cargarMatriz(N, M, matriz[0]);
     printf("- Matriz cargada: \n");
     mostrarMatriz(N, M, matriz[0]);
-    printf("- Mostrando numeros pares por fila");
-    paresPorFila(N, M, matriz[0]);
+    printf("- Mostrando vector generado con la cantidad de numeros pares por fila\n");
+    int vecPares[N];
+    genVectorCantParesPorFila(N, M, matriz[0], vecPares);
+    for (int i = 0; i < N; i++) {
+        printf("%d ", vecPares[i]);
+    }
     return 0;
 }
 
@@ -41,7 +45,7 @@ void mostrarMatriz(int filas, int columnas, int* matriz) {
     printf("\n");
 }
 
-void paresPorFila(int filas, int columnas, int* matriz) {
+void genVectorCantParesPorFila(int filas, int columnas, int* matriz, int* vector) {
     int cont;
     for (int i = 0; i < filas; i++) {
         cont = 0;
@@ -50,6 +54,7 @@ void paresPorFila(int filas, int columnas, int* matriz) {
                 cont++;
             }
         }
-        printf("\nNumeros pares en la fila %d: %d", i + 1, cont);
+        *vector = cont;
+        vector++;
     }
 }
