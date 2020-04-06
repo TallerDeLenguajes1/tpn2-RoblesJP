@@ -13,9 +13,9 @@ int main() {
     srand(time(NULL));
     int M = rand() % 11 + 5; // columnas
     int matriz[N][M]; // matriz de NxM elementos
-    printf("- Matriz %dx%d generada.\n", N, M);
+    printf("\n- Matriz %dx%d generada.\n", N, M);
     cargarMatriz(N, M, matriz[0]);
-    printf("- Matriz cargada: \n");
+    printf("\n- Matriz cargada: \n");
     mostrarMatriz(N, M, matriz[0]);
     printf("- Mostrando vector generado con la cantidad de numeros pares por fila\n");
     int vecPares[N];
@@ -23,16 +23,16 @@ int main() {
     for (int i = 0; i < N; i++) {
         printf("%d ", vecPares[i]);
     }
+    printf("\n\n");
     return 0;
 }
 
 void cargarMatriz(int filas, int columnas, int* matriz) {
     for (int i = 0; i < filas; i++) {
         for(int j = 0; j < columnas; j++) {
-            printf(">> Ingrese elemento %d,%d: ", i + 1, j + 1); scanf("%d", matriz + (i * columnas + j));
+            *(matriz + (i * columnas + j)) = rand() % 900 + 100;
         }
     }
-    printf("\n");
 }
 
 void mostrarMatriz(int filas, int columnas, int* matriz) {
