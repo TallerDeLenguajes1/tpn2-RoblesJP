@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <limits.h>
 
 typedef struct {
     int ghz;
@@ -13,6 +14,8 @@ typedef struct {
 // funciones
 void cargarLista(int, PC*, char*);
 void mostrarLista(int, PC*);
+void mostrarPCMasVieja(int, PC*);
+void mostrarPCMasRapida(int, PC*);
 
 int main() {
     srand(time(NULL));
@@ -28,6 +31,12 @@ int main() {
 
     printf("\n\n- Mostrando lista");
     mostrarLista(cant, lista_pc);
+
+    printf("\n- Mostrando PC/s mas vieja/s");
+    mostrarPCMasVieja(cant, lista_pc);
+
+    printf("\n- Mostrando PC/s mas rapida/s");
+    mostrarPCMasRapida(cant, lista_pc);
 
     printf("\n\n");
     return 0;
@@ -50,7 +59,45 @@ void mostrarLista(int cant, PC* lista_pc) {
         printf("\nTipo de procesador: %s", lista_pc->tipo_procesador);
         printf("\nCantidad de nucleos: %d", lista_pc->cant_nucleos);
         printf("\nAnio de fabricacion: %d", lista_pc->anio_fabricacion);
-        printf("\n\n");
+        printf("\n");
         lista_pc++;
+    }
+}
+
+void mostrarPCMasVieja(int cant, PC* lista_pc) {
+    int aux = INT_MAX;
+    for (int i = 0; i < cant; i++) {
+        if (lista_pc[i].anio_fabricacion < aux) {
+            aux = lista_pc[i].anio_fabricacion;
+        }
+    }
+    for (int i = 0; i < cant; i++) {
+        if (lista_pc[i].anio_fabricacion == aux) {
+            printf("\nPC#%d", i + 1);
+            printf("\nVelocidad de procesador: %dGhz", lista_pc[i].ghz);
+            printf("\nTipo de procesador: %s", lista_pc[i].tipo_procesador);
+            printf("\nCantidad de nucleos: %d", lista_pc[i].cant_nucleos);
+            printf("\nAnio de fabricacion: %d", lista_pc[i].anio_fabricacion);
+            printf("\n");
+        }
+    }
+}
+
+void mostrarPCMasRapida(int cant, PC* lista_pc) {
+    int aux = 0;
+    for (int i = 0; i < cant; i++) {
+        if (lista_pc[i].ghz > aux) {
+            aux = lista_pc[i].ghz;
+        }
+    }
+    for (int i = 0; i < cant; i++) {
+        if (lista_pc[i].ghz == aux) {
+            printf("\nPC#%d", i + 1);
+            printf("\nVelocidad de procesador: %dGhz", lista_pc[i].ghz);
+            printf("\nTipo de procesador: %s", lista_pc[i].tipo_procesador);
+            printf("\nCantidad de nucleos: %d", lista_pc[i].cant_nucleos);
+            printf("\nAnio de fabricacion: %d", lista_pc[i].anio_fabricacion);
+            printf("\n");
+        }
     }
 }
