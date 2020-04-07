@@ -6,7 +6,7 @@
 typedef struct {
     int ghz;
     int anio_fabricacion;
-    char tipo_procesador[10];
+    char* tipo_procesador;
     int cant_nucleos;
 } PC;
 
@@ -37,7 +37,7 @@ void cargarLista(int cant, PC* lista_pc, char* tipos) {
     for (int i = 0; i < cant; i++) {
         lista_pc->ghz = rand() % 3 + 1;
         lista_pc->anio_fabricacion = rand() % 18 + 2000;
-        strcpy(lista_pc->tipo_procesador, tipos + (rand() % 6 * 10));
+        lista_pc->tipo_procesador = tipos + (rand() % 6 * 10);
         lista_pc->cant_nucleos = rand() % 4 + 1;
         lista_pc++;
     }
