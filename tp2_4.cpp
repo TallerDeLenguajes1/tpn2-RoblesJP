@@ -16,6 +16,7 @@ void cargarLista(int, PC*, char*);
 void mostrarLista(int, PC*);
 void mostrarPCMasVieja(int, PC*);
 void mostrarPCMasRapida(int, PC*);
+void mostrarPC(PC*);
 
 int main() {
     srand(time(NULL));
@@ -55,49 +56,53 @@ void cargarLista(int cant, PC* lista_pc, char* tipos) {
 void mostrarLista(int cant, PC* lista_pc) {
     for (int i = 0; i < cant; i++) {
         printf("\nPC#%d", i + 1);
-        printf("\nVelocidad de procesador: %dGhz", lista_pc->ghz);
-        printf("\nTipo de procesador: %s", lista_pc->tipo_procesador);
-        printf("\nCantidad de nucleos: %d", lista_pc->cant_nucleos);
-        printf("\nAnio de fabricacion: %d", lista_pc->anio_fabricacion);
-        printf("\n");
+        mostrarPC(lista_pc);
         lista_pc++;
     }
 }
 
 void mostrarPCMasVieja(int cant, PC* lista_pc) {
     int aux = INT_MAX;
+    PC* p_aux = lista_pc;
     for (int i = 0; i < cant; i++) {
-        if (lista_pc[i].anio_fabricacion < aux) {
-            aux = lista_pc[i].anio_fabricacion;
+        if (lista_pc->anio_fabricacion < aux) {
+            aux = lista_pc->anio_fabricacion;
         }
+        lista_pc++;
     }
+    lista_pc = p_aux;
     for (int i = 0; i < cant; i++) {
-        if (lista_pc[i].anio_fabricacion == aux) {
+        if (lista_pc->anio_fabricacion == aux) {
             printf("\nPC#%d", i + 1);
-            printf("\nVelocidad de procesador: %dGhz", lista_pc[i].ghz);
-            printf("\nTipo de procesador: %s", lista_pc[i].tipo_procesador);
-            printf("\nCantidad de nucleos: %d", lista_pc[i].cant_nucleos);
-            printf("\nAnio de fabricacion: %d", lista_pc[i].anio_fabricacion);
-            printf("\n");
+            mostrarPC(lista_pc);
         }
+        lista_pc++;
     }
 }
 
 void mostrarPCMasRapida(int cant, PC* lista_pc) {
     int aux = 0;
+    PC* p_aux = lista_pc;
     for (int i = 0; i < cant; i++) {
-        if (lista_pc[i].ghz > aux) {
-            aux = lista_pc[i].ghz;
+        if (lista_pc->ghz > aux) {
+            aux = lista_pc->ghz;
         }
+        lista_pc++;
     }
+    lista_pc = p_aux;
     for (int i = 0; i < cant; i++) {
-        if (lista_pc[i].ghz == aux) {
+        if (lista_pc->ghz == aux) {
             printf("\nPC#%d", i + 1);
-            printf("\nVelocidad de procesador: %dGhz", lista_pc[i].ghz);
-            printf("\nTipo de procesador: %s", lista_pc[i].tipo_procesador);
-            printf("\nCantidad de nucleos: %d", lista_pc[i].cant_nucleos);
-            printf("\nAnio de fabricacion: %d", lista_pc[i].anio_fabricacion);
-            printf("\n");
+            mostrarPC(lista_pc);
         }
+        lista_pc++;
     }
+}
+
+void mostrarPC(PC* pc) {
+    printf("\nVelocidad de procesador: %dGhz", pc->ghz);
+    printf("\nTipo de procesador: %s", pc->tipo_procesador);
+    printf("\nCantidad de nucleos: %d", pc->cant_nucleos);
+    printf("\nAnio de fabricacion: %d", pc->anio_fabricacion);
+    printf("\n");
 }
