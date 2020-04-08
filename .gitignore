@@ -6,6 +6,7 @@
 desktop.ini
 *.tds
 *.pdf
+.vscode/
 
 ### C++ ###
 # Prerequisites
